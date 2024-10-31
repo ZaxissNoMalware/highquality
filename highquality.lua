@@ -9,6 +9,7 @@ local Settings, FOVSettings, Functions = Aimbot.Settings, Aimbot.FOVSettings, Ai
 
 Aimbot.Settings.Enabled = false
 Aimbot.Settings.SaveSettings = false
+Aimbot.Settings.TeamCheck = true
 
 
 Aimbot.FOVSettings.Enabled = true
