@@ -1375,7 +1375,7 @@ local function getObjGen()
             Gui.Logo.Size = UDim2.new(1, 0, 0.100000001, 0)
             Gui.Logo.ZIndex = 122
             Gui.Logo.Image = "rbxassetid://12354328040" -- айди роблокс логотипа 
-            Gui.Logo.ImageColor3 = Color3.fromRGB(134, 142, 255)
+            Gui.Logo.ImageColor3 = Color3.fromRGB(255, 255, 255)
             Gui.Logo.ScaleType = Enum.ScaleType.Fit
 
             Gui.UIGradient_5.Color =
@@ -3828,7 +3828,7 @@ function UILibrary.Window:ChangeCategorySelection(name)
             Object.InnerContent.Image,
             TI,
             {
-                ImageColor3 = Color3.fromRGB(83, 87, 158)
+                ImageColor3 = maincolor
             }
         ):Play()
 
@@ -3836,7 +3836,7 @@ function UILibrary.Window:ChangeCategorySelection(name)
             Object.InnerContent.Title,
             TI,
             {
-                TextColor3 = Color3.fromRGB(83, 87, 158)
+                TextColor3 = maincolor
             }
         ):Play()
 
@@ -4288,7 +4288,7 @@ function UILibrary.Section:Toggle(sett, callback)
                 element,
                 TI,
                 {
-                    BackgroundColor3 = Color3.fromRGB(134, 142, 255)
+                    BackgroundColor3 = maincolor
                 }
             ):Play()
         else
