@@ -1367,16 +1367,24 @@ local function getObjGen()
             Gui.UIPadding_8.PaddingRight = UDim.new(0, 4)
             Gui.UIPadding_8.PaddingTop = UDim.new(0, 16)
 
-            Gui.Logo.Name = "Logo" -- логотип менять здесь
+            Gui.Logo.Name = "Logo"
             Gui.Logo.Parent = Gui.Cheats_2
             Gui.Logo.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
             Gui.Logo.BackgroundTransparency = 1.000
             Gui.Logo.LayoutOrder = -5
             Gui.Logo.Size = UDim2.new(1, 0, 0.100000001, 0)
             Gui.Logo.ZIndex = 122
-            Gui.Logo.Image = "rbxassetid://8343875413" -- айди роблокс логотипа 
-            Gui.Logo.ImageColor3 = Color3.fromRGB(255, 255, 255)
+            Gui.Logo.Image = "rbxassetid://8343875413"
+            Gui.Logo.ImageColor3 = Color3.fromRGB(134, 142, 255)
             Gui.Logo.ScaleType = Enum.ScaleType.Fit
+
+            Gui.UIGradient_5.Color =
+                ColorSequence.new {
+                ColorSequenceKeypoint.new(0.00, Color3.fromRGB(255, 255, 255)),
+                ColorSequenceKeypoint.new(1.00, Color3.fromRGB(163, 163, 163))
+            }
+            Gui.UIGradient_5.Rotation = 45
+            Gui.UIGradient_5.Parent = Gui.Logo
 
 
             Gui.CheatHolder.Name = "CheatHolder"
