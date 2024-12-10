@@ -1378,13 +1378,6 @@ local function getObjGen()
             Gui.Logo.ImageColor3 = Color3.fromRGB(255, 255, 255)
             Gui.Logo.ScaleType = Enum.ScaleType.Fit
 
-            Gui.UIGradient_5.Color =
-                ColorSequence.new {
-                ColorSequenceKeypoint.new(0.00, Color3.fromRGB(255, 255, 255)),
-                ColorSequenceKeypoint.new(1.00, Color3.fromRGB(163, 163, 163))
-            }
-            Gui.UIGradient_5.Rotation = 45
-            Gui.UIGradient_5.Parent = Gui.Logo
 
             Gui.CheatHolder.Name = "CheatHolder"
             Gui.CheatHolder.Parent = Gui.Cheats_2
