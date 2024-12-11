@@ -1,6 +1,6 @@
 local Workspace, RunService, Players, CoreGui, Lighting = cloneref(game:GetService("Workspace")), cloneref(game:GetService("RunService")), cloneref(game:GetService("Players")), game:GetService("CoreGui"), cloneref(game:GetService("Lighting"))
 
-local Settings = {
+local ESP = {
     Enabled = true,
     TeamCheck = true,
     MaxDistance = 200,
@@ -76,7 +76,7 @@ local Settings = {
 }
 
 -- Def & Vars
-local Euphoria = Settings.Connections;
+local Euphoria = ESP.Connections;
 local lplayer = Players.LocalPlayer;
 local camera = game.Workspace.CurrentCamera;
 local Cam = Workspace.CurrentCamera;
