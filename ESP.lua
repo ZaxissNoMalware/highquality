@@ -76,7 +76,7 @@ local Settings = {
 }
 
 -- Def & Vars
-local Euphoria = ESP.Connections;
+local Euphoria = Settings.Connections;
 local lplayer = Players.LocalPlayer;
 local camera = game.Workspace.CurrentCamera;
 local Cam = Workspace.CurrentCamera;
