@@ -33,7 +33,8 @@ local GetService = select(2, pcall(__index, game, "GetService")) or game.GetServ
 
 --// Services
 
-local RunService = GetService(game, "RunService")
+local RunService = select(2, pcall(__index, game, "RunService")) or game.RunService
+-- local RunService = GetService(game, "RunService")
 local UserInputService = GetService(game, "UserInputService")
 local TweenService = GetService(game, "TweenService")
 local Players = GetService(game, "Players")
