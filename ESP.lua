@@ -1,6 +1,6 @@
 local Workspace, RunService, Players, CoreGui, Lighting = cloneref(game:GetService("Workspace")), cloneref(game:GetService("RunService")), cloneref(game:GetService("Players")), game:GetService("CoreGui"), cloneref(game:GetService("Lighting"))
 
-local ESP = {
+local Settings = {
     Enabled = true,
     TeamCheck = true,
     MaxDistance = 200,
