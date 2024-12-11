@@ -75,9 +75,9 @@ if identifyexecutor() == "Solara" then -- Quads are broken on Solara.
 	end
 end
 
-local _GetService = __index(game, "GetService")
-local FindFirstChild, WaitForChild = __index(game, "FindFirstChild"), __index(game, "WaitForChild")
-local IsA = __index(game, "IsA")
+local _GetService = getrawmetatable(getrenv().game).__index(game, "GetService")
+local FindFirstChild, WaitForChild = getrawmetatable(getrenv().game).__index(game, "FindFirstChild"), getrawmetatable(getrenv().game).__index(game, "WaitForChild")
+local IsA = getrawmetatable(getrenv().game).__index(game, "IsA")
 
 local GetService = function(Service)
 	return cloneref(_GetService(game, Service))
