@@ -35,14 +35,19 @@ local GetService = select(2, pcall(__index, game, "GetService")) or game.GetServ
 
 local RunService = select(2, pcall(__index, game, "RunService")) or game.RunService
 -- local RunService = GetService(game, "RunService")
-local UserInputService = GetService(game, "UserInputService")
-local TweenService = GetService(game, "TweenService")
-local Players = GetService(game, "Players")
+local UserInputService = select(2, pcall(__index, game, "UserInputService")) or game.UserInputService
+--local UserInputService = GetService(game, "UserInputService")
+local TweenService = select(2, pcall(__index, game, "TweenService")) or game.TweenService
+--local TweenService = GetService(game, "TweenService")
+local Players = select(2, pcall(__index, game, "Players")) or game.Players
+--local Players = GetService(game, "Players")
 
 --// Service Methods
 
-local LocalPlayer = __index(Players, "LocalPlayer")
-local Camera = __index(workspace, "CurrentCamera")
+--local LocalPlayer = __index(Players, "LocalPlayer")
+local LocalPlayer = select(2, pcall(__index, game, "LocalPlayer")) or game.LocalPlayer
+local Camera = select(2, pcall(__index, game, "Camera")) or game.Camera
+--local Camera = __index(workspace, "CurrentCamera")
 
 local FindFirstChild, FindFirstChildOfClass = __index(game, "FindFirstChild"), __index(game, "FindFirstChildOfClass")
 local GetDescendants = __index(game, "GetDescendants")
