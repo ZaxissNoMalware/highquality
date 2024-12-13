@@ -1,68 +1,103 @@
-local UILib = loadstring(game:HttpGet('https://raw.githubusercontent.com/ZaxissNoMalware/highquality/refs/heads/main/UI.lua'))()
-local SaveManager = loadstring(game:HttpGet('https://raw.githubusercontent.com/ZaxissNoMalware/highquality/refs/heads/main/SAVEMANAGER.lua'))()
-loadstring(game:HttpGet("https://raw.githubusercontent.com/Exunys/Aimbot-V2/main/Resources/Scripts/Main.lua"))()
+--[[
+КРАЖА ИСХОДНОГО КОДА ПРИВЕДЕТ К ПЛОХИМ ПОСЛЕДСТВИЯМ
+STEALING SOURCE CODE GONNA MAKE YOU PROBLEMS
+--]]
+--[[
+КРАЖА ИСХОДНОГО КОДА ПРИВЕДЕТ К ПЛОХИМ ПОСЛЕДСТВИЯМ
+STEALING SOURCE CODE GONNA MAKE YOU PROBLEMS
+--]]
+--[[
+КРАЖА ИСХОДНОГО КОДА ПРИВЕДЕТ К ПЛОХИМ ПОСЛЕДСТВИЯМ
+STEALING SOURCE CODE GONNA MAKE YOU PROBLEMS
+--]]
+--[[
+КРАЖА ИСХОДНОГО КОДА ПРИВЕДЕТ К ПЛОХИМ ПОСЛЕДСТВИЯМ
+STEALING SOURCE CODE GONNA MAKE YOU PROBLEMS
+--]]
+--[[
+КРАЖА ИСХОДНОГО КОДА ПРИВЕДЕТ К ПЛОХИМ ПОСЛЕДСТВИЯМ
+STEALING SOURCE CODE GONNA MAKE YOU PROBLEMS
+--]]
+--[[
+КРАЖА ИСХОДНОГО КОДА ПРИВЕДЕТ К ПЛОХИМ ПОСЛЕДСТВИЯМ
+STEALING SOURCE CODE GONNA MAKE YOU PROBLEMS
+--]]
+--[[
+КРАЖА ИСХОДНОГО КОДА ПРИВЕДЕТ К ПЛОХИМ ПОСЛЕДСТВИЯМ
+STEALING SOURCE CODE GONNA MAKE YOU PROBLEMS
+--]]
+--[[
+КРАЖА ИСХОДНОГО КОДА ПРИВЕДЕТ К ПЛОХИМ ПОСЛЕДСТВИЯМ
+STEALING SOURCE CODE GONNA MAKE YOU PROBLEMS
+--]]
+--[[
+КРАЖА ИСХОДНОГО КОДА ПРИВЕДЕТ К ПЛОХИМ ПОСЛЕДСТВИЯМ
+STEALING SOURCE CODE GONNA MAKE YOU PROBLEMS
+--]]
+--[[
+КРАЖА ИСХОДНОГО КОДА ПРИВЕДЕТ К ПЛОХИМ ПОСЛЕДСТВИЯМ
+STEALING SOURCE CODE GONNA MAKE YOU PROBLEMS
+--]]
+--[[
+КРАЖА ИСХОДНОГО КОДА ПРИВЕДЕТ К ПЛОХИМ ПОСЛЕДСТВИЯМ
+STEALING SOURCE CODE GONNA MAKE YOU PROBLEMS
+--]]
+--[[
+КРАЖА ИСХОДНОГО КОДА ПРИВЕДЕТ К ПЛОХИМ ПОСЛЕДСТВИЯМ
+STEALING SOURCE CODE GONNA MAKE YOU PROBLEMS
+--]]
+--[[
+КРАЖА ИСХОДНОГО КОДА ПРИВЕДЕТ К ПЛОХИМ ПОСЛЕДСТВИЯМ
+STEALING SOURCE CODE GONNA MAKE YOU PROBLEMS
+--]]
+--[[
+КРАЖА ИСХОДНОГО КОДА ПРИВЕДЕТ К ПЛОХИМ ПОСЛЕДСТВИЯМ
+STEALING SOURCE CODE GONNA MAKE YOU PROBLEMS
+--]]
+--[[
+КРАЖА ИСХОДНОГО КОДА ПРИВЕДЕТ К ПЛОХИМ ПОСЛЕДСТВИЯМ
+STEALING SOURCE CODE GONNA MAKE YOU PROBLEMS
+--]]
 
 
-getgenv().Aimbot.Settings.SendNotifications = false
-getgenv().Aimbot.Settings.SaveSettings = false -- Re-execute upon changing
-getgenv().Aimbot.Settings.ReloadOnTeleport = false
-getgenv().Aimbot.Settings.Enabled = false
-getgenv().Aimbot.Settings.TeamCheck = true
-getgenv().Aimbot.Settings.AliveCheck = true
-getgenv().Aimbot.Settings.WallCheck = false -- Laggy
-getgenv().Aimbot.Settings.Sensitivity = 0.2 -- Animation length (in seconds) before fully locking onto target
-getgenv().Aimbot.Settings.ThirdPerson = false-- Uses mousemoverel instead of CFrame to support locking in third person (could be choppy)
-getgenv().Aimbot.Settings.ThirdPersonSensitivity = 3 -- Boundary: 0.1 - 5
-getgenv().Aimbot.Settings.TriggerKey = "MouseButton2"
-getgenv().Aimbot.Settings.Toggle = false
-getgenv().Aimbot.Settings.LockPart = "Head" -- Body part to lock on (Character part's name)
+local Fluent = loadstring(game:HttpGet("https://github.com/dawid-scripts/Fluent/releases/latest/download/main.lua"))()
+local SaveManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/SaveManager.lua"))()
 
+loadstring(game:HttpGet("https://raw.githubusercontent.com/ZaxissNoMalware/highquality/refs/heads/main/AIMBOT.lua"))()
 
-getgenv().Aimbot.FOVSettings.Enabled = false
-getgenv().Aimbot.FOVSettings.Visible = true
-getgenv().Aimbot.FOVSettings.Amount = 90
-getgenv().Aimbot.FOVSettings.Color = "255, 255, 255"
-getgenv().Aimbot.FOVSettings.LockedColor = "255, 25, 25"
-getgenv().Aimbot.FOVSettings.Transparency = 0.5
-getgenv().Aimbot.FOVSettings.Sides = 60
-getgenv().Aimbot.FOVSettings.Thickness = 1
-getgenv().Aimbot.FOVSettings.Filled = false
+--[[
+КРАЖА ИСХОДНОГО КОДА ПРИВЕДЕТ К ПЛОХИМ ПОСЛЕДСТВИЯМ
+STEALING SOURCE CODE GONNA MAKE YOU PROBLEMS
+--]]
 
-
-
-local Window = Library:CreateWindow({
-    -- Set Center to true if you want the menu to appear in the center
-    -- Set AutoShow to true if you want the menu to appear when it is created
-    -- Position and Size are also valid options here
-    -- but you do not need to define them unless you are changing them :)
-
-    Title = 'highquality v1 | DEV',
-    Center = true,
-    AutoShow = true,
-    TabPadding = 9
+local Window = Fluent:CreateWindow({
+    Title = "highquality",
+    SubTitle = "by Zaxiss",
+    TabWidth = 160,
+    Size = UDim2.fromOffset(580, 460),
+    Acrylic = false, -- The blur may be detectable, setting this to false disables blur entirely
+    Theme = "Darker",
+    MinimizeKey = Enum.KeyCode.Insert -- Used when theres no MinimizeKeybind
 })
 
 local Tabs = {
-    Aimbot = Window:AddTab('Aimbot'),
-    Visuals = Window:AddTab('Visuals'),
-    Settings = Window:AddTab('Settings'),
+    Aimbot = Window:AddTab({ Title = "Aimbot", Icon = "circle-plus"}),
+    Visuals = Window:AddTab({ Title = "Visuals", Icon = "eye "}),
+    Settings = Window:AddTab({ Title = "Settings", Icon = "settings"}),
 }
 
-Library:SetWatermarkVisibility(true)
+--[[
+КРАЖА ИСХОДНОГО КОДА ПРИВЕДЕТ К ПЛОХИМ ПОСЛЕДСТВИЯМ
+STEALING SOURCE CODE GONNA MAKE YOU PROBLEMS
+--]]
 
-Library:SetWatermark('highquality v1')
+local Options = Fluent.Options
 
 -----------------------------------------------------------------------------------
-
-local V_PlayersTab = Tabs.Visuals:AddLeftTabbox('Players')
-
-local PlayersTab = V_PlayersTab:AddTab('ESP')
-local ColorsTab = V_PlayersTab:AddTab('Colors')
-
-PlayersTab:AddLabel('Dont spam or toggle a lot. \n It will cause lag', true)
-
-local A_MainTab = Tabs.Aimbot:AddLeftGroupbox('Aimbot')
-
+--[[
+КРАЖА ИСХОДНОГО КОДА ПРИВЕДЕТ К ПЛОХИМ ПОСЛЕДСТВИЯМ
+STEALING SOURCE CODE GONNA MAKE YOU PROBLEMS
+--]]
 
 -----------------------------------------------------------------------------------
 
@@ -494,7 +529,127 @@ end;
 
 ----------------------------------------------------------------------------------
 
-PlayersTab:AddToggle('ESPNames', {
+do
+    local ESPNames = Tabs.Visuals:AddToggle("ESPNames", {Title = "Names", Default = false })
+
+    ESPNames:OnChanged(function()
+        ESP.Drawing.Names.Enabled = Options.ESPNames.Value
+    end)
+
+    local ESPHealth = Tabs.Visuals:AddToggle("ESPHealth", {Title = "Health Bar", Default = false })
+
+    ESPHealth:OnChanged(function()
+        ESP.Drawing.Healthbar.Enabled = Options.ESPHealth.Value
+    end)
+
+    local ESPHealthWidth = Tabs.Visuals:AddSlider("ESPHealthWidth", {
+        Title = "Health Bar Width",
+        Description = "",
+        Default = 2.5,
+        Min = 0.1,
+        Max = 10,
+        Rounding = 1,
+        Callback = function(Value)
+            ESP.Drawing.Healthbar.Width = Value
+        end
+    })
+
+    local ESPBox = Tabs.Visuals:AddDropdown("ESPBox", {
+        Title = "Box",
+        Values = {"None", "Corner", "Full"},
+        Multi = false,
+        Default = 1,
+    })
+
+    ESPBox:OnChanged(function(Value)
+        if Value == "None" then
+            ESP.Drawing.Boxes.Corner.Enabled = false
+            ESP.Drawing.Boxes.Full.Enabled = false
+        elseif Value == "Corner" then
+            ESP.Drawing.Boxes.Corner.Enabled = true
+            ESP.Drawing.Boxes.Full.Enabled = false
+        else
+            ESP.Drawing.Boxes.Corner.Enabled = false
+            ESP.Drawing.Boxes.Full.Enabled = true
+        end
+    end)
+
+    local ESPBoxAnimate = Tabs.Visuals:AddToggle("ESPBoxAnimate", {Title = "Box Animate (Full only)", Default = false })
+
+    ESPBoxAnimate:OnChanged(function()
+        ESP.Drawing.Boxes.Animate = Options.ESPBoxAnimate.Value
+    end)
+
+    local ESPChams = Tabs.Visuals:AddToggle("ESPChams", {Title = "Chams", Default = false })
+
+    ESPChams:OnChanged(function()
+        ESP.Drawing.Chams.Enabled = Options.ESPChams.Value
+    end)
+
+    local ESPChamsThermal = Tabs.Visuals:AddToggle("ESPChamsThermal", {Title = "Chams Thermal", Default = false })
+
+    ESPChamsThermal:OnChanged(function()
+        ESP.Drawing.Chams.Thermal = Options.ESPChamsThermal.Value
+    end)
+
+
+
+
+    local AIMToggleOnly = Tabs.Aimbot:AddToggle("AIMToggleOnly", {Title = "Toggle", Default = false })
+
+    AIMToggleOnly:OnChanged(function()
+        getgenv().Aimbot.Toggle = Options.AIMToggleOnly.Value
+    end)
+
+    local AIMKey = Tabs.Aimbot:AddDropdown("AIMKey", {
+        Title = "Keybind",
+        Values = {"C", "F", "E", "V"},
+        Multi = false,
+        Default = 1,
+    })
+
+    AIMKey:OnChanged(function(Value)
+        if Value == "C" then
+            getgenv().Aimbot.Keybind = 'C'
+        elseif Value == "F" then
+            getgenv().Aimbot.Keybind = 'F'
+        elseif Value == "E" then
+            getgenv().Aimbot.Keybind = 'E'
+        else
+            getgenv().Aimbot.Keybind = 'V'
+        end
+    end)
+
+    local AIMHitPart = Tabs.Aimbot:AddDropdown("AIMHitPart", {
+        Title = "Hit Part",
+        Values = {"Torso", "Head"},
+        Multi = false,
+        Default = 1,
+    })
+
+    AIMHitPart:OnChanged(function(Value)
+        if Value == "Torso" then
+            getgenv().Aimbot.Hitpart = 'HumanoidRootPart'
+        else
+            getgenv().Aimbot.Hitpart = 'Head'
+        end
+    end)
+
+    local AIMPrediction = Tabs.Aimbot:AddToggle("AIMPrediction", {Title = "Prediction", Default = false })
+
+    AIMPrediction:OnChanged(function()
+        getgenv().Aimbot.Predictioning = Options.AIMPrediction.Value
+    end)
+
+    local AIMToggle = Tabs.Aimbot:AddToggle("AIMToggle", {Title = "Aimbot On/Off", Default = false })
+
+    AIMToggle:OnChanged(function()
+        getgenv().Aimbot.Status = Options.AIMToggle.Value
+    end)
+
+end
+
+--[[ PlayersTab:AddToggle('ESPNames', {
     Text = 'Names',
     Default = false, -- Default value (true / false)
     Tooltip = '', -- Information shown when you hover over the toggle
@@ -623,7 +778,7 @@ A_MainTab:AddSlider('AimbotSmoothing', {
     Default = 0.2,
     Min = 0,
     Max = 1,
-    Rounding = 2,
+    Rounding = 1,
     Compact = false,
 
     Callback = function(Value)
@@ -636,13 +791,13 @@ A_MainTab:AddSlider('AimbotFOV', {
     Default = 90,
     Min = 1,
     Max = 400,
-    Rounding = 0,
+    Rounding = 1,
     Compact = false,
 
     Callback = function(Value)
         getgenv().Aimbot.FOVSettings.Amount = Value
     end
-})
+}) --]]
 
 
 
@@ -653,23 +808,20 @@ A_MainTab:AddSlider('AimbotFOV', {
 ---------------------------
 
 
-local MenuGroup = Tabs.Settings:AddLeftGroupbox('Menu')
-
-
-MenuGroup:AddLabel('Menu bind'):AddKeyPicker('MenuKeybind', { Default = 'End', NoUI = true, Text = 'Menu keybind' })
-
-Library.ToggleKeybind = Options.MenuKeybind
-
-SaveManager:SetLibrary(Library)
-
-SaveManager:SetIgnoreIndexes({ 'MenuKeybind' })
-
-SaveManager:SetFolder('highquality/configs')
-
+SaveManager:SetLibrary(Fluent)
+SaveManager:IgnoreThemeSettings()
+SaveManager:SetFolder("highquality/Configs")
 SaveManager:BuildConfigSection(Tabs.Settings)
 
-SaveManager:LoadAutoloadConfig()
+Window:SelectTab(1)
 
+Fluent:Notify({
+    Title = "Zaxiss",
+    Content = "- 3 января вернусь и буду добавлять новые функции",
+    Duration = 8
+})
+
+SaveManager:LoadAutoloadConfig()
 
 --[[
 
