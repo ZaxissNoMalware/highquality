@@ -55,7 +55,7 @@ Mouse.KeyDown:Connect(function(key)
 end)
 
 Mouse.KeyUp:Connect(function(key)
-    if key == Aimbot.Keybind:lower() and toggle == false then
+    if key == Aimbot.Keybind:lower() and Aimbot.Toggle == false then
         Player = nil
     end
 end)
