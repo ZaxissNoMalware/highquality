@@ -1,8 +1,9 @@
 getgenv().Aimbot = {
-    Status = false,
+    Status = true,
     Keybind  = 'C',
+    M2 = false,
     Hitpart = 'HumanoidRootPart',
-    Toggle = true,
+    Toggle = false,
     Predictioning = false,
     ['Prediction'] = {
         X = 0.165,
@@ -10,7 +11,7 @@ getgenv().Aimbot = {
     },
 }
 
-
+ 
 if getgenv().AimbotRan then
     return
 else
@@ -48,17 +49,34 @@ local GetClosestPlayer = function()
     return ClosestPlayer
 end
  
-Mouse.KeyDown:Connect(function(key)
-    if key == Aimbot.Keybind:lower() then
+
+Mouse.Button2Down:Connect(function()
+    if Aimbot.M2 then
         Player = not Player and GetClosestPlayer() or nil
+    end
+    
+end)
+
+Mouse.Button2Up:Connect(function()
+    if Aimbot.M2 then
+        Player = nil
+     end
+end)
+
+Mouse.KeyDown:Connect(function(key)
+ if key == Aimbot.Keybind:lower() and Aimbot.M2 == false then
+     Player = not Player and GetClosestPlayer() or nil
     end
 end)
 
 Mouse.KeyUp:Connect(function(key)
-    if key == Aimbot.Keybind:lower() and Aimbot.Toggle == false then
-        Player = nil
+    if key == Aimbot.Keybind:lower() and toggle == false and Aimbot.M2 == false then
+     Player = nil
     end
 end)
+
+
+
  
 RunService.RenderStepped:Connect(function()
     if not Player then
