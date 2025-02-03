@@ -1,74 +1,9 @@
---[[
-КРАЖА ИСХОДНОГО КОДА ПРИВЕДЕТ К ПЛОХИМ ПОСЛЕДСТВИЯМ
-STEALING SOURCE CODE GONNA MAKE YOU PROBLEMS
---]]
---[[
-КРАЖА ИСХОДНОГО КОДА ПРИВЕДЕТ К ПЛОХИМ ПОСЛЕДСТВИЯМ
-STEALING SOURCE CODE GONNA MAKE YOU PROBLEMS
---]]
---[[
-КРАЖА ИСХОДНОГО КОДА ПРИВЕДЕТ К ПЛОХИМ ПОСЛЕДСТВИЯМ
-STEALING SOURCE CODE GONNA MAKE YOU PROBLEMS
---]]
---[[
-КРАЖА ИСХОДНОГО КОДА ПРИВЕДЕТ К ПЛОХИМ ПОСЛЕДСТВИЯМ
-STEALING SOURCE CODE GONNA MAKE YOU PROBLEMS
---]]
---[[
-КРАЖА ИСХОДНОГО КОДА ПРИВЕДЕТ К ПЛОХИМ ПОСЛЕДСТВИЯМ
-STEALING SOURCE CODE GONNA MAKE YOU PROBLEMS
---]]
---[[
-КРАЖА ИСХОДНОГО КОДА ПРИВЕДЕТ К ПЛОХИМ ПОСЛЕДСТВИЯМ
-STEALING SOURCE CODE GONNA MAKE YOU PROBLEMS
---]]
---[[
-КРАЖА ИСХОДНОГО КОДА ПРИВЕДЕТ К ПЛОХИМ ПОСЛЕДСТВИЯМ
-STEALING SOURCE CODE GONNA MAKE YOU PROBLEMS
---]]
---[[
-КРАЖА ИСХОДНОГО КОДА ПРИВЕДЕТ К ПЛОХИМ ПОСЛЕДСТВИЯМ
-STEALING SOURCE CODE GONNA MAKE YOU PROBLEMS
---]]
---[[
-КРАЖА ИСХОДНОГО КОДА ПРИВЕДЕТ К ПЛОХИМ ПОСЛЕДСТВИЯМ
-STEALING SOURCE CODE GONNA MAKE YOU PROBLEMS
---]]
---[[
-КРАЖА ИСХОДНОГО КОДА ПРИВЕДЕТ К ПЛОХИМ ПОСЛЕДСТВИЯМ
-STEALING SOURCE CODE GONNA MAKE YOU PROBLEMS
---]]
---[[
-КРАЖА ИСХОДНОГО КОДА ПРИВЕДЕТ К ПЛОХИМ ПОСЛЕДСТВИЯМ
-STEALING SOURCE CODE GONNA MAKE YOU PROBLEMS
---]]
---[[
-КРАЖА ИСХОДНОГО КОДА ПРИВЕДЕТ К ПЛОХИМ ПОСЛЕДСТВИЯМ
-STEALING SOURCE CODE GONNA MAKE YOU PROBLEMS
---]]
---[[
-КРАЖА ИСХОДНОГО КОДА ПРИВЕДЕТ К ПЛОХИМ ПОСЛЕДСТВИЯМ
-STEALING SOURCE CODE GONNA MAKE YOU PROBLEMS
---]]
---[[
-КРАЖА ИСХОДНОГО КОДА ПРИВЕДЕТ К ПЛОХИМ ПОСЛЕДСТВИЯМ
-STEALING SOURCE CODE GONNA MAKE YOU PROBLEMS
---]]
---[[
-КРАЖА ИСХОДНОГО КОДА ПРИВЕДЕТ К ПЛОХИМ ПОСЛЕДСТВИЯМ
-STEALING SOURCE CODE GONNA MAKE YOU PROBLEMS
---]]
-
-
 local Fluent = loadstring(game:HttpGet("https://github.com/dawid-scripts/Fluent/releases/latest/download/main.lua"))()
 local SaveManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/SaveManager.lua"))()
 
 loadstring(game:HttpGet("https://raw.githubusercontent.com/ZaxissNoMalware/highquality/refs/heads/main/AIMBOT.lua"))()
 
---[[
-КРАЖА ИСХОДНОГО КОДА ПРИВЕДЕТ К ПЛОХИМ ПОСЛЕДСТВИЯМ
-STEALING SOURCE CODE GONNA MAKE YOU PROBLEMS
---]]
+
 
 local Window = Fluent:CreateWindow({
     Title = "highquality",
@@ -86,18 +21,10 @@ local Tabs = {
     Settings = Window:AddTab({ Title = "Settings", Icon = "settings"}),
 }
 
---[[
-КРАЖА ИСХОДНОГО КОДА ПРИВЕДЕТ К ПЛОХИМ ПОСЛЕДСТВИЯМ
-STEALING SOURCE CODE GONNA MAKE YOU PROBLEMS
---]]
-
 local Options = Fluent.Options
 
 -----------------------------------------------------------------------------------
---[[
-КРАЖА ИСХОДНОГО КОДА ПРИВЕДЕТ К ПЛОХИМ ПОСЛЕДСТВИЯМ
-STEALING SOURCE CODE GONNA MAKE YOU PROBLEMS
---]]
+
 
 -----------------------------------------------------------------------------------
 
@@ -592,18 +519,36 @@ do
         ESP.Drawing.Chams.Thermal = Options.ESPChamsThermal.Value
     end)
 
+--------------------
 
 
+    local AIMToggle = Tabs.Aimbot:AddToggle("AIMToggle", {Title = "Aimbot On/Off", Default = false })
 
-    local AIMToggleOnly = Tabs.Aimbot:AddToggle("AIMToggleOnly", {Title = "Toggle", Default = false })
-
-    AIMToggleOnly:OnChanged(function()
-        getgenv().Aimbot.Toggle = Options.AIMToggleOnly.Value
+    AIMToggle:OnChanged(function()
+        getgenv().Aimbot.Status = Options.AIMToggle.Value
     end)
+
+    local AIMSmoothing = Tabs.Aimbot:AddSlider("AIMSmoothing", {
+        Title = "Smoothing",
+        Description = "",
+        Default = 0,
+        Min = 0,
+        Max = 1,
+        Rounding = 1,
+        Callback = function(Value)
+            getgenv().Aimbot.Smoothing = Value
+        end
+    })
+
+    --[[local AIMToggleOnly = Tabs.Aimbot:AddToggle("AIMToggleOnly", {Title = "Keybind Toggle", Default = false })
+
+    AIMToggleOnly:OnChanged(function()                                                          -- хуета не нужная
+        getgenv().Aimbot.Toggle = Options.AIMToggleOnly.Value
+    end)--]]                                                            
 
     local AIMKey = Tabs.Aimbot:AddDropdown("AIMKey", {
         Title = "Keybind",
-        Values = {"C", "F", "E", "V"},
+        Values = {"C", "F", "E", "V", "M2"},
         Multi = false,
         Default = 1,
     })
@@ -611,12 +556,18 @@ do
     AIMKey:OnChanged(function(Value)
         if Value == "C" then
             getgenv().Aimbot.Keybind = 'C'
+            getgenv().Aimbot.M2 = false
         elseif Value == "F" then
             getgenv().Aimbot.Keybind = 'F'
+            getgenv().Aimbot.M2 = false
         elseif Value == "E" then
             getgenv().Aimbot.Keybind = 'E'
-        else
+            getgenv().Aimbot.M2 = false
+        elseif Value == "V" then
             getgenv().Aimbot.Keybind = 'V'
+            getgenv().Aimbot.M2 = false
+        else
+            getgenv().Aimbot.M2 = true
         end
     end)
 
@@ -641,11 +592,30 @@ do
         getgenv().Aimbot.Predictioning = Options.AIMPrediction.Value
     end)
 
-    local AIMToggle = Tabs.Aimbot:AddToggle("AIMToggle", {Title = "Aimbot On/Off", Default = false })
+    local AIMPredictionX = Tabs.Aimbot:AddSlider("AIMPredictionX", {
+        Title = "Predict X",
+        Description = "Change it only if u know what you doing",
+        Default = 0.165,
+        Min = 0.05,
+        Max = 1,
+        Rounding = 3,
+        Callback = function(Value)
+            getgenv().Aimbot.Prediction.X = Value
+        end
+    })
 
-    AIMToggle:OnChanged(function()
-        getgenv().Aimbot.Status = Options.AIMToggle.Value
-    end)
+    local AIMPredictionY = Tabs.Aimbot:AddSlider("AIMPredictionY", {
+        Title = "Predict Y",
+        Description = "Change it only if u know what you doing",
+        Default = 0.1,
+        Min = 0.05,
+        Max = 1,
+        Rounding = 3,
+        Callback = function(Value)
+            getgenv().Aimbot.Prediction.Y = Value
+        end
+    })
+
 
 end
 
@@ -808,6 +778,7 @@ A_MainTab:AddSlider('AimbotFOV', {
 ---------------------------
 
 
+SaveManager:SetIgnoreIndexes({})
 SaveManager:SetLibrary(Fluent)
 SaveManager:IgnoreThemeSettings()
 SaveManager:SetFolder("highquality/Configs")
@@ -815,11 +786,6 @@ SaveManager:BuildConfigSection(Tabs.Settings)
 
 Window:SelectTab(1)
 
-Fluent:Notify({
-    Title = "Zaxiss",
-    Content = "- 3 января вернусь и буду добавлять новые функции",
-    Duration = 8
-})
 
 SaveManager:LoadAutoloadConfig()
 
