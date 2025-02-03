@@ -1,7 +1,7 @@
 getgenv().Aimbot = {
     Status = true,
     Keybind  = 'C',
-    M2 = false,
+    M2 = true,
     Hitpart = 'HumanoidRootPart',
     Toggle = false,
     Predictioning = false,
@@ -9,6 +9,7 @@ getgenv().Aimbot = {
         X = 0.165,
         Y = 0.1,
     },
+    Smoothing = 1
 }
 
  
@@ -23,6 +24,7 @@ local RunService = game:GetService('RunService')
 local Workspace = game:GetService('Workspace')
 local Players = game:GetService('Players')
 local UserInputService = game:GetService("UserInputService") 
+local TweenService = game:GetService("TweenService")
 
 local LocalPlayer = Players.LocalPlayer
 local Camera = Workspace.CurrentCamera
@@ -60,6 +62,9 @@ end)
 Mouse.Button2Up:Connect(function()
     if Aimbot.M2 then
         Player = nil
+        if Animation then
+            Animation:Cancel()
+        end
      end
 end)
 
@@ -72,6 +77,9 @@ end)
 Mouse.KeyUp:Connect(function(key)
     if key == Aimbot.Keybind:lower() and toggle == false and Aimbot.M2 == false then
      Player = nil
+     if Animation then
+        Animation:Cancel()
+    end
     end
 end)
 
@@ -90,9 +98,20 @@ RunService.RenderStepped:Connect(function()
         return
     end
     if Aimbot.Predictioning == true then
-        Camera.CFrame = CFrame.new(Camera.CFrame.Position, Hitpart.Position + Hitpart.Velocity * Vector3.new(Aimbot.Prediction.X, Aimbot.Prediction.Y, Aimbot.Prediction.X))
+        if Aimbot.Smoothing == 0 then
+            Camera.CFrame = CFrame.new(Camera.CFrame.Position, Hitpart.Position + Hitpart.Velocity * Vector3.new(Aimbot.Prediction.X, Aimbot.Prediction.Y, Aimbot.Prediction.X))
+        else
+            Animation = TweenService:Create(Camera, TweenInfo.new(Aimbot.Smoothing, Enum.EasingStyle.Sine, Enum.EasingDirection.Out), {CFrame = CFrame.new(Camera.CFrame.Position, Hitpart.Position + Hitpart.Velocity * Vector3.new(Aimbot.Prediction.X, Aimbot.Prediction.Y, Aimbot.Prediction.X))})
+			Animation:Play()
+        end
+        
     else
-        Camera.CFrame = CFrame.new(Camera.CFrame.Position, Hitpart.Position)
+        if Aimbot.Smoothing == 0 then
+            Camera.CFrame = CFrame.new(Camera.CFrame.Position, Hitpart.Position)
+        else
+            Animation = TweenService:Create(Camera, TweenInfo.new(Aimbot.Smoothing, Enum.EasingStyle.Sine, Enum.EasingDirection.Out), {CFrame = CFrame.new(Camera.CFrame.Position, Hitpart.Position)})
+			Animation:Play()
+        end
     end
     
 
