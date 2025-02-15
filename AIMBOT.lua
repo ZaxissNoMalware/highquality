@@ -98,8 +98,8 @@ RunService.RenderStepped:Connect(function()
     if not Hitpart then
         return
     end
-    if Aimbot.TeamCheck and Player.Team == LocalPlayer.Team then continue end
-    if Aimbot.Predictioning == true then
+    if Aimbot.TeamCheck and Player.Team ~= LocalPlayer.Team then
+        if Aimbot.Predictioning == true then
         if Aimbot.Smoothing == 0 then
             Camera.CFrame = CFrame.new(Camera.CFrame.Position, Hitpart.Position + Hitpart.Velocity * Vector3.new(Aimbot.Prediction.X, Aimbot.Prediction.Y, Aimbot.Prediction.X))
         else
@@ -115,6 +115,8 @@ RunService.RenderStepped:Connect(function()
 			Animation:Play()
         end
     end
+    end
+    
     
 
 end)
