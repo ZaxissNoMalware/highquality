@@ -10,7 +10,7 @@ getgenv().Aimbot = {
         Y = 0.1,
     },
     Smoothing = 0.9,
-    TeamCheck = true
+    TeamCheck = false
 }
 
  
