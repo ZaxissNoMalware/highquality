@@ -10,7 +10,6 @@ getgenv().Aimbot = {
         Y = 0.1,
     },
     Smoothing = 0.9,
-    TeamCheck = false
 }
 
  
@@ -38,7 +37,6 @@ local GetClosestPlayer = function()
     local ClosestDistance, ClosestPlayer = 10000, nil
     for _, Player : Player in pairs(Players:GetPlayers()) do
         if Player.Name ~= LocalPlayer.Name and Player.Character and Player.Character:FindFirstChild('HumanoidRootPart') then
-            if Aimbot.TeamCheck and Player.Team == LocalPlayer.Team then return GetClosestPlayer end
             local Root, Visible = Camera:WorldToScreenPoint(Player.Character.HumanoidRootPart.Position)
             if not Visible then
                 continue
