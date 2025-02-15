@@ -9,7 +9,8 @@ getgenv().Aimbot = {
         X = 0.165,
         Y = 0.1,
     },
-    Smoothing = 1
+    Smoothing = 1,
+    TeamCheck = false
 }
 
  
@@ -97,6 +98,7 @@ RunService.RenderStepped:Connect(function()
     if not Hitpart then
         return
     end
+    if Aimbot.TeamCheck and v.Team == LocalPlayer.Team then continue end
     if Aimbot.Predictioning == true then
         if Aimbot.Smoothing == 0 then
             Camera.CFrame = CFrame.new(Camera.CFrame.Position, Hitpart.Position + Hitpart.Velocity * Vector3.new(Aimbot.Prediction.X, Aimbot.Prediction.Y, Aimbot.Prediction.X))
