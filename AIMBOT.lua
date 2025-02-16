@@ -1,16 +1,16 @@
 getgenv().Aimbot = {
     Status = true,
     Keybind  = 'C',
-    M2 = false,
+    M2 = true,
     Hitpart = 'HumanoidRootPart',
-    Toggle = false,
+   -- Toggle = false,
     Predictioning = false,
     ['Prediction'] = {
         X = 0.165,
         Y = 0.1,
     },
     Smoothing = 0.9,
-    TeamCheck = false,
+    --TeamCheck = false,
 }
 
  
@@ -38,26 +38,14 @@ local GetClosestPlayer = function()
     local ClosestDistance, ClosestPlayer = 10000, nil
     for _, Player : Player in pairs(Players:GetPlayers()) do
         if Player.Name ~= LocalPlayer.Name and Player.Character and Player.Character:FindFirstChild('HumanoidRootPart') then
-            if Aimbot.TeamCheck and Player.Team ~= LocalPlayer.Team then
-                local Root, Visible = Camera:WorldToScreenPoint(Player.Character.HumanoidRootPart.Position)
-                if not Visible then
-                    continue
-                end
-                Root = (Vector2.new(Mouse.X, Mouse.Y) - Vector2.new(Root.X, Root.Y)).Magnitude
-                if Root < ClosestDistance then
-                    ClosestPlayer = Player
-                    ClosestDistance = Root
-            else
-                local Root, Visible = Camera:WorldToScreenPoint(Player.Character.HumanoidRootPart.Position)
-                if not Visible then
-                    continue
-                end
-                Root = (Vector2.new(Mouse.X, Mouse.Y) - Vector2.new(Root.X, Root.Y)).Magnitude
-                if Root < ClosestDistance then
-                    ClosestPlayer = Player
-                    ClosestDistance = Root
+            local Root, Visible = Camera:WorldToScreenPoint(Player.Character.HumanoidRootPart.Position)
+            if not Visible then
+                continue
             end
-           
+            Root = (Vector2.new(Mouse.X, Mouse.Y) - Vector2.new(Root.X, Root.Y)).Magnitude
+            if Root < ClosestDistance then
+                ClosestPlayer = Player
+                ClosestDistance = Root
             end
         end
     end
@@ -110,7 +98,6 @@ RunService.RenderStepped:Connect(function()
     if not Hitpart then
         return
     end
-    if Aimbot.TeamCheck and Player.Team == LocalPlayer.Team then return GetClosestPlayer end
     if Aimbot.Predictioning == true then
         if Aimbot.Smoothing == 0 then
             Camera.CFrame = CFrame.new(Camera.CFrame.Position, Hitpart.Position + Hitpart.Velocity * Vector3.new(Aimbot.Prediction.X, Aimbot.Prediction.Y, Aimbot.Prediction.X))
