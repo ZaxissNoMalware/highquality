@@ -18,6 +18,7 @@ local Window = Fluent:CreateWindow({
 local Tabs = {
     Aimbot = Window:AddTab({ Title = "Aimbot", Icon = "circle-plus"}),
     Visuals = Window:AddTab({ Title = "Visuals", Icon = "eye "}),
+    Misc = Window:AddTab({ Title = "Misc", Icon = "eye "}),
     Settings = Window:AddTab({ Title = "Settings", Icon = "settings"}),
 }
 
@@ -631,6 +632,54 @@ do
 
 
 end
+
+
+-------------------------------------------------------------------
+
+local hitmarker = game:GetService("ReplicatedStorage").Storage.MeleeClient.Hitmarker
+local hitmarker2 = game:GetService("Players").LocalPlayer.PlayerGui.CoreGUI.HitmarkerSound
+
+
+
+local Hitsound = Tabs.Misc:AddDropdown("Hitsound", {
+Title = "Hitsound",
+Values = {"Default", "OSU", "Rust", "Neverlose", "Skeet"},
+Multi = false,
+Default = 1,
+})
+
+
+Hitsound:OnChanged(function(Value)
+if Value == "Default" then
+    hitmarker.SoundId = "rbxassetid://4817809188"
+    hitmarker2.SoundId = "rbxassetid://160432334"
+elseif Value == "OSU" then
+    hitmarker.SoundId = "rbxassetid://7147454322"
+    hitmarker2.SoundId = "rbxassetid://7147454322"
+elseif Value == "Rust" then
+    hitmarker.SoundId = "rbxassetid://3744371091"
+    hitmarker2.SoundId = "rbxassetid://3744371091"
+elseif Value == "Neverlose" then
+    hitmarker.SoundId = "rbxassetid://8679627751"
+    hitmarker2.SoundId = "rbxassetid://8679627751"
+else
+    hitmarker.SoundId = "rbxassetid://4753603610"
+    hitmarker2.SoundId = "rbxassetid://4753603610"
+end
+end)
+
+local HitsoundVolume = Tabs.Misc:AddSlider("HitsoundVolume", {
+    Title = "Hitsound Volume",
+    Description = "",
+    Default = 0.5,
+    Min = 0,
+    Max = 10,
+    Rounding = 1,
+    Callback = function(Value)
+        hitmarker.Volume = Value
+        hitmarker2.Volume = Value
+    end
+})
 
 --[[ PlayersTab:AddToggle('ESPNames', {
     Text = 'Names',
