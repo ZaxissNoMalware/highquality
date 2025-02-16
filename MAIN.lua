@@ -35,8 +35,8 @@ local Workspace, RunService, Players, CoreGui, Lighting = cloneref(game:GetServi
 local ESP = {
     Enabled = true,
     TeamCheck = true,
-    MaxDistance = 100,
-    FontSize = 11,
+    MaxDistance = 200,
+    FontSize = 10,
     FadeOut = {
         OnDistance = true,
         OnDeath = true,
@@ -540,6 +540,12 @@ do
         end
     })
 
+    local AIMTeamCheck = Tabs.Aimbot:AddToggle("AIMTeamCheck", {Title = "Team Check", Default = false })
+
+    AIMTeamCheck:OnChanged(function()
+        getgenv().Aimbot.TeamCheck = Options.AIMTeamCheck.Value
+    end)
+
     --[[local AIMToggleOnly = Tabs.Aimbot:AddToggle("AIMToggleOnly", {Title = "Keybind Toggle", Default = false })
 
     AIMToggleOnly:OnChanged(function()                                                          -- хуета не нужная
@@ -552,6 +558,7 @@ do
         Multi = false,
         Default = 1,
     })
+
 
     AIMKey:OnChanged(function(Value)
         if Value == "C" then
