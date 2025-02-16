@@ -463,6 +463,12 @@ do
         ESP.Drawing.Names.Enabled = Options.ESPNames.Value
     end)
 
+    local ESPDistance = Tabs.Visuals:AddToggle("ESPDistance", {Title = "Distance", Default = false })
+
+    ESPDistance:OnChanged(function()
+        ESP.Drawing.Distances.Enabled = Options.ESPDistance.Value
+    end)
+
     local ESPHealth = Tabs.Visuals:AddToggle("ESPHealth", {Title = "Health Bar", Default = false })
 
     ESPHealth:OnChanged(function()
@@ -532,9 +538,9 @@ do
         Title = "Smoothing",
         Description = "",
         Default = 0,
-        Min = 0,
+        Min = 0.01,
         Max = 1,
-        Rounding = 1,
+        Rounding = 2,
         Callback = function(Value)
             getgenv().Aimbot.Smoothing = Value
         end
