@@ -19,6 +19,7 @@ local Tabs = {
     Aimbot = Window:AddTab({ Title = "Aimbot", Icon = "circle-plus"}),
     Visuals = Window:AddTab({ Title = "Visuals", Icon = "eye "}),
     Misc = Window:AddTab({ Title = "Misc", Icon = "eye "}),
+    Colors = Window:AddTab({ Title = "Colors", Icon = "eye "}),
     Settings = Window:AddTab({ Title = "Settings", Icon = "settings"}),
 }
 
@@ -86,7 +87,7 @@ local ESP = {
             Animate = false,
             RotationSpeed = 300,
             Gradient = true, GradientRGB1 = Color3.fromRGB(255,255,255), GradientRGB2 = Color3.fromRGB(0, 0, 0), 
-            GradientFill = true, GradientFillRGB1 = Color3.fromRGB(255,255,255), GradientFillRGB2 = Color3.fromRGB(0, 0, 0), 
+            GradientFill = false, GradientFillRGB1 = Color3.fromRGB(255,255,255), GradientFillRGB2 = Color3.fromRGB(0, 0, 0), 
             Filled = {
                 Enabled = false,
                 Transparency = 0.75,
@@ -185,9 +186,9 @@ do -- Initalize
         local Distance = Functions:Create("TextLabel", {Parent = ScreenGui, Position = UDim2.new(0.5, 0, 0, 11), Size = UDim2.new(0, 100, 0, 20), AnchorPoint = Vector2.new(0.5, 0.5), BackgroundTransparency = 1, TextColor3 = Color3.fromRGB(255, 255, 255), Font = Enum.Font.Code, TextSize = ESP.FontSize, TextStrokeTransparency = 0, TextStrokeColor3 = Color3.fromRGB(0, 0, 0), RichText = true})
         local Weapon = Functions:Create("TextLabel", {Parent = ScreenGui, Position = UDim2.new(0.5, 0, 0, 31), Size = UDim2.new(0, 100, 0, 20), AnchorPoint = Vector2.new(0.5, 0.5), BackgroundTransparency = 1, TextColor3 = Color3.fromRGB(255, 255, 255), Font = Enum.Font.Code, TextSize = ESP.FontSize, TextStrokeTransparency = 0, TextStrokeColor3 = Color3.fromRGB(0, 0, 0), RichText = true})
         local Box = Functions:Create("Frame", {Parent = ScreenGui, BackgroundColor3 = Color3.fromRGB(0, 0, 0), BackgroundTransparency = 0.75, BorderSizePixel = 0})
-        local Gradient1 = Functions:Create("UIGradient", {Parent = Box, Enabled = ESP.Drawing.Boxes.GradientFill, Color = ColorSequence.new{ColorSequenceKeypoint.new(0, ESP.Drawing.Boxes.GradientFillRGB1), ColorSequenceKeypoint.new(1, ESP.Drawing.Boxes.GradientFillRGB2)}})
+        local Gradient1 = Functions:Create("UIGradient", {Parent = Box, Name = "Gradient2", Enabled = ESP.Drawing.Boxes.GradientFill, Color = ColorSequence.new{ColorSequenceKeypoint.new(0, ESP.Drawing.Boxes.GradientFillRGB1), ColorSequenceKeypoint.new(1, ESP.Drawing.Boxes.GradientFillRGB2)}})
         local Outline = Functions:Create("UIStroke", {Parent = Box, Enabled = ESP.Drawing.Boxes.Gradient, Transparency = 0, Color = Color3.fromRGB(255, 255, 255), LineJoinMode = Enum.LineJoinMode.Miter})
-        local Gradient2 = Functions:Create("UIGradient", {Parent = Outline, Enabled = ESP.Drawing.Boxes.Gradient, Color = ColorSequence.new{ColorSequenceKeypoint.new(0, ESP.Drawing.Boxes.GradientRGB1), ColorSequenceKeypoint.new(1, ESP.Drawing.Boxes.GradientRGB2)}})
+        local Gradient2 = Functions:Create("UIGradient", {Parent = Outline, Name = "Gradient1", Enabled = ESP.Drawing.Boxes.Gradient, Color = ColorSequence.new{ColorSequenceKeypoint.new(0, ESP.Drawing.Boxes.GradientRGB1), ColorSequenceKeypoint.new(1, ESP.Drawing.Boxes.GradientRGB2)}})
         local Healthbar = Functions:Create("Frame", {Parent = ScreenGui, BackgroundColor3 = Color3.fromRGB(255, 255, 255), BackgroundTransparency = 0})
         local BehindHealthbar = Functions:Create("Frame", {Parent = ScreenGui, ZIndex = -1, BackgroundColor3 = Color3.fromRGB(0, 0, 0), BackgroundTransparency = 0})
         local HealthbarGradient = Functions:Create("UIGradient", {Parent = Healthbar, Enabled = ESP.Drawing.Healthbar.Gradient, Rotation = -90, Color = ColorSequence.new{ColorSequenceKeypoint.new(0, ESP.Drawing.Healthbar.GradientRGB1), ColorSequenceKeypoint.new(0.5, ESP.Drawing.Healthbar.GradientRGB2), ColorSequenceKeypoint.new(1, ESP.Drawing.Healthbar.GradientRGB3)}})
@@ -273,7 +274,7 @@ do -- Initalize
 
                         -- Teamcheck
                         if ESP.TeamCheck and plr ~= lplayer and ((lplayer.Team ~= plr.Team and plr.Team) or (not lplayer.Team and not plr.Team)) and plr.Character and plr.Character:FindFirstChild("HumanoidRootPart") and plr.Character:FindFirstChild("Humanoid") then
-
+                
                             do -- Chams
                                 Chams.Adornee = plr.Character
                                 Chams.Enabled = ESP.Drawing.Chams.Enabled
@@ -337,6 +338,8 @@ do -- Initalize
                                 Box.Position = UDim2.new(0, Pos.X - w / 2, 0, Pos.Y - h / 2)
                                 Box.Size = UDim2.new(0, w, 0, h)
                                 Box.Visible = ESP.Drawing.Boxes.Full.Enabled;
+                                --Box.Gradient1.Color = ColorSequence.new{ColorSequenceKeypoint.new(0, ESP.Drawing.Boxes.GradientRGB1), ColorSequenceKeypoint.new(1, ESP.Drawing.Boxes.GradientRGB2)}
+                                Box.UIStroke.Gradient1.Color = ColorSequence.new{ColorSequenceKeypoint.new(0, ESP.Drawing.Boxes.GradientRGB1), ColorSequenceKeypoint.new(1, ESP.Drawing.Boxes.GradientRGB2)}
 
                                 -- Gradient
                                 if ESP.Drawing.Boxes.Filled.Enabled then
@@ -350,6 +353,9 @@ do -- Initalize
                                 else
                                     Box.BackgroundTransparency = 1
                                 end
+
+                                
+                                
                                 -- Animation
                                 RotationAngle = RotationAngle + (tick() - Tick) * ESP.Drawing.Boxes.RotationSpeed * math.cos(math.pi / 4 * tick() - math.pi / 2)
                                 if ESP.Drawing.Boxes.Animate then
@@ -368,6 +374,7 @@ do -- Initalize
                                 Healthbar.Visible = ESP.Drawing.Healthbar.Enabled;
                                 Healthbar.Position = UDim2.new(0, Pos.X - w / 2 - 6, 0, Pos.Y - h / 2 + h * (1 - health))  
                                 Healthbar.Size = UDim2.new(0, ESP.Drawing.Healthbar.Width, 0, h * health)  
+                                Healthbar.UIGradient.Color = ColorSequence.new{ColorSequenceKeypoint.new(0, ESP.Drawing.Healthbar.GradientRGB1), ColorSequenceKeypoint.new(0.5, ESP.Drawing.Healthbar.GradientRGB2), ColorSequenceKeypoint.new(1, ESP.Drawing.Healthbar.GradientRGB3)}
                                 --
                                 BehindHealthbar.Visible = ESP.Drawing.Healthbar.Enabled;
                                 BehindHealthbar.Position = UDim2.new(0, Pos.X - w / 2 - 6, 0, Pos.Y - h / 2)  
@@ -458,11 +465,25 @@ end;
 ----------------------------------------------------------------------------------
 
 do
+
+    local ESPMaxDistance = Tabs.Visuals:AddSlider("ESPMaxDistance", {
+        Title = "Max Distance",
+        Description = "",
+        Default = 200,
+        Min = 3,
+        Max = 1000,
+        Rounding = 0,
+        Callback = function(Value)
+            ESP.MaxDistance = Value
+        end
+    })
+
     local ESPNames = Tabs.Visuals:AddToggle("ESPNames", {Title = "Names", Default = false })
 
     ESPNames:OnChanged(function()
         ESP.Drawing.Names.Enabled = Options.ESPNames.Value
     end)
+
 
     local ESPDistance = Tabs.Visuals:AddToggle("ESPDistance", {Title = "Distance", Default = false })
 
@@ -479,10 +500,10 @@ do
     local ESPHealthWidth = Tabs.Visuals:AddSlider("ESPHealthWidth", {
         Title = "Health Bar Width",
         Description = "",
-        Default = 2.5,
-        Min = 0.1,
-        Max = 10,
-        Rounding = 1,
+        Default = 0.5,
+        Min = 0.05,
+        Max = 5,
+        Rounding = 2,
         Callback = function(Value)
             ESP.Drawing.Healthbar.Width = Value
         end
@@ -680,6 +701,71 @@ local HitsoundVolume = Tabs.Misc:AddSlider("HitsoundVolume", {
         hitmarker2.Volume = Value
     end
 })
+
+-----------------------------------------------------------
+---
+local FullBoxColorGradient1 = Tabs.Colors:AddColorpicker("FullBoxColorGradient1", {
+    Title = "Full Box Gradient 1",
+    Default = Color3.fromRGB(255,255,255)
+})
+FullBoxColorGradient1:OnChanged(function()
+    ESP.Drawing.Boxes.GradientRGB1 = FullBoxColorGradient1.Value
+    
+end)
+
+local FullBoxColorGradient2 = Tabs.Colors:AddColorpicker("FullBoxColorGradient2", {
+    Title = "Full Box Gradient 2",
+    Default = Color3.fromRGB(0,0,0)
+})
+FullBoxColorGradient2:OnChanged(function()
+    ESP.Drawing.Boxes.GradientRGB2 = FullBoxColorGradient2.Value
+    
+end)
+
+local HealthBarGradient1 = Tabs.Colors:AddColorpicker("HealthBarGradient1", {
+    Title = "Health Bar Gradient 1",
+    Default = Color3.fromRGB(200, 0, 0)
+})
+HealthBarGradient1:OnChanged(function()
+    ESP.Drawing.Healthbar.GradientRGB1 = HealthBarGradient1.Value
+end)
+
+local HealthBarGradient2 = Tabs.Colors:AddColorpicker("HealthBarGradient2", {
+    Title = "Health Bar Gradient 2",
+    Default = Color3.fromRGB(255, 200, 0)
+})
+HealthBarGradient2:OnChanged(function()
+    ESP.Drawing.Healthbar.GradientRGB2 = HealthBarGradient2.Value
+end)
+
+local HealthBarGradient3 = Tabs.Colors:AddColorpicker("HealthBarGradient3", {
+    Title = "Health Bar Gradient 3",
+    Default = Color3.fromRGB(38, 255, 0)
+})
+HealthBarGradient3:OnChanged(function()
+    ESP.Drawing.Healthbar.GradientRGB3 = HealthBarGradient3.Value
+end)
+
+
+local ChamsColor = Tabs.Colors:AddColorpicker("ChamsColor", {
+    Title = "Chams",
+    Default = Color3.fromRGB(255,255,255)
+})
+ChamsColor:OnChanged(function()
+    ESP.Drawing.Chams.FillRGB = ChamsColor.Value
+end)
+
+local ChamsOutlineColor = Tabs.Colors:AddColorpicker("ChamsOutlineColor", {
+    Title = "Chams Outline",
+    Default = Color3.fromRGB(230,230,230)
+})
+ChamsOutlineColor:OnChanged(function()
+    ESP.Drawing.Chams.OutlineRGB = ChamsOutlineColor.Value
+end)
+
+
+
+
 
 --[[ PlayersTab:AddToggle('ESPNames', {
     Text = 'Names',
