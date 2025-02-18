@@ -11,6 +11,7 @@ getgenv().Aimbot = {
     },
     Smoothing = 0.01,
     TeamCheck = false,
+    WallCheck = false,
 }
 
  
@@ -41,6 +42,7 @@ local GetClosestPlayer = function()
             if Aimbot.TeamCheck and Player.TeamColor == LocalPlayer.TeamColor then
                 continue
             end
+            if Aimbot.WallCheck and #(Camera:GetPartsObscuringTarget({Player.Character[Aimbot.Hitpart].Position}, Player.Character:GetDescendants())) > 0 then continue end
             local Root, Visible = Camera:WorldToScreenPoint(Player.Character.HumanoidRootPart.Position)
             if not Visible then
                 continue
@@ -101,6 +103,7 @@ RunService.RenderStepped:Connect(function()
     if not Hitpart then
         return
     end
+    if Aimbot.WallCheck and #(Camera:GetPartsObscuringTarget({Player.Character[Aimbot.Hitpart].Position}, Player.Character:GetDescendants())) > 0 then return end
     if Aimbot.Predictioning == true then
         if Aimbot.Smoothing == 0.01 then
             Camera.CFrame = CFrame.new(Camera.CFrame.Position, Hitpart.Position + Hitpart.Velocity * Vector3.new(Aimbot.Prediction.X, Aimbot.Prediction.Y, Aimbot.Prediction.X))
